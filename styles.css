@@ -1,0 +1,132 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+}
+
+/* Header */
+header {
+    background-color: #fff;
+    padding: 20px 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between; /* Logo di kiri, navbar di tengah */
+    align-items: center;
+}
+
+nav {
+    display: flex;
+    justify-content: center; /* Menengahkan navbar */
+    align-items: center;
+    width: 100%;
+}
+
+nav .logo {
+    position: absolute; /* Membuat logo tetap di kiri */
+    left: 20px;
+}
+
+nav .logo img {
+    height: 60px; /* Membesarkan logo */
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+}
+
+nav ul li {
+    margin-left: 150px;
+    margin-top: 30px; /* Jarak antar item lebih jauh */
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    font-size: 1.4rem; /* Memperbesar ukuran teks di navbar */
+}
+
+
+.hero {
+    display: flex;
+    justify-content: space-between;
+    padding: 50px 20px;
+    background-color: #fff;
+    color: rgb(0, 0, 0);
+    align-items: center; /* Menyelaraskan gambar dan teks secara vertikal */
+}
+
+.hero-text {
+    max-width: 50%;
+}
+
+.hero-text h1 {
+    font-size: 3rem; /* Memperbesar ukuran teks judul */
+    margin-bottom: 20px;
+}
+
+.hero-text p {
+    font-size: 1.5rem; /* Memperbesar ukuran teks deskripsi */
+}
+
+.hero-image img {
+    width: 400px; /* Memperbesar gambar */
+    height: 400px; /* Memperbesar gambar */
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+.news-blog {
+    padding: 50px 20px;
+    text-align: center;
+    background-color: #fff;
+}
+
+.news-blog h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.news-blog h3 {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+}
+
+.news-container {
+    display: flex;
+    justify-content: space-around;
+}
+
+.news-item {
+    background-color: #f9f9f9;
+    padding: 20px;
+    width: 30%;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+.news-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.news-item .date {
+    font-size: 0.875rem;
+    color: #777;
+    margin-top: 10px;
+}
+
+.news-item h4 {
+    font-size: 1.2rem;
+    margin-top: 15px;
+}

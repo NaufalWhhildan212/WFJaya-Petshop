@@ -1,0 +1,150 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+}
+
+/* Header */
+header {
+    background-color: #fff;
+    padding: 20px 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between; /* Logo di kiri, navbar di tengah */
+    align-items: center;
+}
+
+nav {
+    display: flex;
+    justify-content: center; /* Menengahkan navbar */
+    align-items: center;
+    width: 100%;
+}
+
+nav .logo {
+    position: absolute; /* Membuat logo tetap di kiri */
+    left: 20px;
+}
+
+nav .logo img {
+    height: 60px; /* Membesarkan logo */
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+}
+
+nav ul li {
+    margin-left: 150px;
+    margin-top: 30px; /* Jarak antar item lebih jauh */
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    font-size: 1.4rem; /* Memperbesar ukuran teks di navbar */
+}
+
+/* Catalog Section */
+.catalog {
+    padding: 50px 20px;
+    text-align: center;
+    background-color: #fff;
+}
+
+.catalog h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.product {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.product img {
+    width: 100%;
+    max-width: 250px;
+    height: auto;
+    border-radius: 10px;
+}
+
+.product h3 {
+    font-size: 1.2rem;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.rating {
+    font-size: 1rem;
+    margin-top: 5px;
+    color: gold;
+}
+
+.price {
+    font-size: 1.1rem;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.btn-sale {
+    background-color: #ff6347;
+    color: white;
+    padding: 10px 20px;
+    margin-top: 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.pagination {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.pagination a {
+    text-decoration: none;
+    color: #333;
+    margin: 0 5px;
+    font-size: 1.2rem;
+}
+
+.pagination a:hover {
+    color: #ff6347;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .pagination {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .product-grid {
+        grid-template-columns: 1fr;
+    }
+}

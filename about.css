@@ -1,0 +1,172 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+}
+
+/* Header */
+header {
+    background-color: #fff;
+    padding: 20px 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between; /* Logo di kiri, navbar di tengah */
+    align-items: center;
+}
+
+nav {
+    display: flex;
+    justify-content: center; /* Menengahkan navbar */
+    align-items: center;
+    width: 100%;
+}
+
+nav .logo {
+    position: absolute; /* Membuat logo tetap di kiri */
+    left: 20px;
+}
+
+nav .logo img {
+    height: 60px; /* Membesarkan logo */
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+}
+
+nav ul li {
+    margin-left: 150px;
+    margin-top: 30px; /* Jarak antar item lebih jauh */
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    font-size: 1.4rem; /* Memperbesar ukuran teks di navbar */
+}
+
+/* --------------------------- About Section --------------------------- */
+.about {
+    display: flex;
+    justify-content: space-between;
+    padding: 50px 20px;
+    background-color: #fff;
+    color: #333;
+}
+
+.about-content {
+    max-width: 50%;
+    padding-right: 20px;
+}
+
+.about-content h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.stars {
+    font-size: 1.5rem;
+    color: gold;
+    margin-bottom: 15px;
+}
+
+.about-content p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+.about-image {
+    max-width: 45%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.about-image img {
+    width: 100%;
+    border-radius: 15px;
+}
+
+/* --------------------------- Contact Section --------------------------- */
+.contact {
+    padding: 40px 20px;
+    text-align: center;
+    background-color: #fff;
+    color: #333;
+}
+
+.contact h3 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.contact p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+.contact ul {
+    list-style: none;
+}
+
+.contact ul li {
+    font-size: 1.1rem;
+    margin: 10px 0;
+}
+
+/* --------------------------- Media Queries for Responsiveness --------------------------- */
+
+@media (max-width: 768px) {
+    .about {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .about-content {
+        max-width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .about-image img {
+        width: 80%;
+        height: auto;
+    }
+
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav ul li {
+        margin-left: 0;
+        margin-top: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .about-content h2 {
+        font-size: 1.5rem;
+    }
+
+    .about-content p {
+        font-size: 1rem;
+    }
+
+    .stars {
+        font-size: 1.2rem;
+    }
+
+    .contact ul li {
+        font-size: 1rem;
+    }
+}
