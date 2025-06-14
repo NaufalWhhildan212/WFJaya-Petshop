@@ -13,76 +13,85 @@ body {
 /* Header */
 header {
     background-color: #fff;
-    padding: 20px 0;
+    padding: 20px; /* Adjusted padding for better spacing on all screens */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     display: flex;
-    justify-content: space-between; /* Logo di kiri, navbar di tengah */
+    justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap; /* Allows items to wrap on smaller screens */
 }
 
 nav {
     display: flex;
-    justify-content: center; /* Menengahkan navbar */
+    justify-content: center;
     align-items: center;
     width: 100%;
+    /* Remove position: absolute and left: 20px from .logo, it will be handled by flexbox */
 }
 
 nav .logo {
-    position: absolute; /* Membuat logo tetap di kiri */
-    left: 20px;
+    order: -1; /* Ensures logo is always first in flex order */
+    margin-right: auto; /* Pushes the logo to the left */
 }
 
 nav .logo img {
-    height: 60px; /* Membesarkan logo */
+    height: 60px;
 }
 
 nav ul {
     list-style: none;
     display: flex;
+    width: 100%; /* Take full width on smaller screens */
+    justify-content: flex-end; /* Align links to the right by default */
+    margin-top: 0; /* Reset margin */
 }
 
 nav ul li {
-    margin-left: 150px;
-    margin-top: 30px; /* Jarak antar item lebih jauh */
+    margin-left: 40px; /* Reduced margin for desktop, will adjust for mobile */
+    margin-top: 0; /* Reset margin */
 }
 
 nav ul li a {
     text-decoration: none;
     color: #333;
     font-weight: bold;
-    font-size: 1.4rem; /* Memperbesar ukuran teks di navbar */
+    font-size: 1.2rem; /* Slightly reduced for better mobile fit, will adjust with media queries */
+    white-space: nowrap; /* Prevent links from breaking lines */
 }
 
-
+/* Hero Section */
 .hero {
     display: flex;
+    flex-direction: row; /* Default for desktop */
     justify-content: space-between;
     padding: 50px 20px;
     background-color: #fff;
     color: rgb(0, 0, 0);
-    align-items: center; /* Menyelaraskan gambar dan teks secara vertikal */
+    align-items: center;
 }
 
 .hero-text {
-    max-width: 50%;
+    max-width: 50%; /* Default for desktop */
+    text-align: left;
 }
 
 .hero-text h1 {
-    font-size: 3rem; /* Memperbesar ukuran teks judul */
+    font-size: 3rem;
     margin-bottom: 20px;
 }
 
 .hero-text p {
-    font-size: 1.5rem; /* Memperbesar ukuran teks deskripsi */
+    font-size: 1.5rem;
 }
 
 .hero-image img {
-    width: 400px; /* Memperbesar gambar */
-    height: 400px; /* Memperbesar gambar */
+    width: 400px;
+    height: 400px;
     object-fit: cover;
     border-radius: 15px;
 }
 
+/* News Blog Section */
 .news-blog {
     padding: 50px 20px;
     text-align: center;
@@ -102,12 +111,14 @@ nav ul li a {
 .news-container {
     display: flex;
     justify-content: space-around;
+    flex-wrap: wrap; /* Allows news items to wrap */
+    gap: 20px; /* Adds space between news items */
 }
 
 .news-item {
     background-color: #f9f9f9;
     padding: 20px;
-    width: 30%;
+    width: 30%; /* Default for desktop */
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: left;
@@ -129,4 +140,120 @@ nav ul li a {
 .news-item h4 {
     font-size: 1.2rem;
     margin-top: 15px;
+}
+
+/* --- Media Queries for Responsiveness --- */
+
+/* For screens smaller than 768px (common tablet breakpoint) */
+@media (max-width: 768px) {
+    /* Header adjustments */
+    header {
+        flex-direction: column; /* Stack logo and nav vertically */
+        align-items: flex-start; /* Align items to the start */
+        padding: 15px 20px;
+    }
+
+    nav {
+        flex-direction: column; /* Stack nav items */
+        width: 100%;
+        margin-top: 15px;
+    }
+
+    nav .logo {
+        margin-right: 0; /* Remove auto margin */
+        margin-bottom: 15px; /* Add space below logo */
+        width: 100%; /* Take full width */
+        text-align: center; /* Center the logo image */
+    }
+
+    nav ul {
+        flex-direction: column; /* Stack menu items */
+        align-items: center; /* Center align menu items */
+        margin-top: 10px;
+    }
+
+    nav ul li {
+        margin-left: 0; /* Remove horizontal margin */
+        margin-bottom: 15px; /* Add vertical space between links */
+    }
+
+    nav ul li a {
+        font-size: 1.1rem; /* Slightly smaller text for better fit */
+    }
+
+    /* Hero Section adjustments */
+    .hero {
+        flex-direction: column; /* Stack text and image vertically */
+        text-align: center;
+        padding: 30px 20px;
+    }
+
+    .hero-text {
+        max-width: 100%; /* Take full width */
+        margin-bottom: 30px; /* Space between text and image */
+    }
+
+    .hero-text h1 {
+        font-size: 2.2rem; /* Smaller font size for mobile */
+    }
+
+    .hero-text p {
+        font-size: 1.2rem; /* Smaller font size for mobile */
+    }
+
+    .hero-image img {
+        width: 100%; /* Make image full width */
+        max-width: 300px; /* Limit max width for very small screens */
+        height: auto; /* Maintain aspect ratio */
+    }
+
+    /* News Blog Section adjustments */
+    .news-container {
+        flex-direction: column; /* Stack news items vertically */
+        align-items: center; /* Center news items */
+    }
+
+    .news-item {
+        width: 90%; /* Make news items take more width */
+        max-width: 400px; /* Max width for news items */
+    }
+}
+
+/* For screens smaller than 480px (common mobile breakpoint) */
+@media (max-width: 480px) {
+    /* General body padding adjustment for very small screens */
+    body {
+        padding: 0 10px;
+    }
+
+    /* Header adjustments */
+    header {
+        padding: 10px 15px;
+    }
+
+    nav .logo img {
+        height: 50px; /* Slightly smaller logo */
+    }
+
+    nav ul li a {
+        font-size: 1rem; /* Even smaller font for links */
+    }
+
+    /* Hero Section adjustments */
+    .hero {
+        padding: 20px 15px;
+    }
+
+    .hero-text h1 {
+        font-size: 1.8rem;
+    }
+
+    .hero-text p {
+        font-size: 1rem;
+    }
+
+    /* News Blog Section adjustments */
+    .news-blog h2 {
+        font-size: 1.8rem;
+    }
 }
