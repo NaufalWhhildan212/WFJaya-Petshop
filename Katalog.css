@@ -6,289 +6,889 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Inter', sans-serif; /* Consistent modern font */
     line-height: 1.6;
-    background-color: #f4f4f4;
+    background-color: #f8f8f8; /* Light background for consistency */
+    color: #333;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
-/* Header */
+/* Header & Navigation (Re-applying the correct centralized logo and links) */
 header {
-    background-color: #fff;
-    padding: 20px; /* Adjusted padding for consistent spacing */
+    background-color: #ffffff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap; /* Allows items to wrap on smaller screens */
+    position: sticky; /* Makes header stick to top */
+    top: 0;
+    z-index: 1000; /* Ensures header is above other content */
+    transition: background-color 0.3s ease; /* Smooth transition for background */
+    padding: 10px 5%; /* Adjusted padding for a more compact header */
+    display: flex; /* Make header a flex container */
+    flex-direction: column; /* Stack logo and nav vertically */
+    align-items: center; /* Center items horizontally in the column */
 }
 
 nav {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
+    flex-direction: column; /* Stack logo and nav list within nav */
+    align-items: center; /* Center logo and nav list */
+    width: 100%; /* Take full width of header */
+    max-width: 1200px; /* Max width for content */
+    margin: 0 auto; /* Center nav horizontally */
 }
 
 nav .logo {
-    order: -1; /* Ensures logo is always first in flex order */
-    margin-right: auto; /* Pushes the logo to the left */
+    margin-bottom: 10px; /* Space between logo and nav links */
 }
 
 nav .logo img {
-    height: 60px;
+    height: 50px; /* Consistent logo size */
+    transition: transform 0.3s ease; /* Animation for logo */
+}
+
+nav .logo img:hover {
+    transform: scale(1.05);
 }
 
 nav ul {
     list-style: none;
-    display: flex;
-    width: 100%; /* Take full width on smaller screens */
-    justify-content: flex-end; /* Align links to the right by default */
-    margin-top: 0; /* Reset margin */
+    margin: 0;
+    padding: 0;
+    display: flex; /* Display links in a row */
+    justify-content: center; /* Center the navigation links */
+    width: 100%; /* Ensure ul takes full width to center links */
 }
 
 nav ul li {
-    margin-left: 40px; /* Reduced margin for desktop */
-    margin-top: 0; /* Reset margin */
+    margin: 0 15px; /* Spacing between menu items (adjust as needed) */
 }
 
 nav ul li a {
     text-decoration: none;
-    color: #333;
+    color: #555;
     font-weight: bold;
-    font-size: 1.2rem; /* Slightly reduced for better mobile fit */
-    white-space: nowrap; /* Prevent links from breaking lines */
+    font-size: 1.1em;
+    padding: 5px 0;
+    position: relative;
+    transition: color 0.3s ease;
 }
 
-/* Catalog Section */
-.catalog {
-    padding: 50px 20px;
+nav ul li a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    display: block;
+    margin-top: 5px;
+    right: 0;
+    background: #FF6B6B; /* Accent color */
+    transition: width 0.3s ease, right 0.3s ease;
+}
+
+nav ul li a:hover::after {
+    width: 100%;
+    left: 0;
+    background: #FF6B6B;
+}
+
+nav ul li a:hover {
+    color: #FF6B6B;
+}
+
+/* Hero Section (Retained for consistency, assuming it's on index.html) */
+.hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     text-align: center;
+    padding: 80px 5%;
+    background: linear-gradient(135deg, #FFD166, #FF6B6B);
+    color: #fff;
+    overflow: hidden;
+}
+
+.hero-text {
+    max-width: 800px;
+    margin-bottom: 40px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInSlideUp 1s ease-out forwards;
+    animation-delay: 0.5s;
+}
+
+.hero-text h1 {
+    font-size: 3.5em;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+}
+
+.hero-text p {
+    font-size: 1.5em;
+    font-weight: 300;
+}
+
+.hero-image {
+    width: 100%;
+    max-width: 700px;
+    perspective: 1000px;
+}
+
+.hero-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    transform: rotateY(0deg);
+    animation: rotateIn 1s ease-out forwards;
+    animation-delay: 1s;
+}
+
+/* News & Blog Section (Retained for consistency, assuming it's on index.html) */
+.news-blog {
+    padding: 60px 5%;
+    text-align: center;
+    background-color: #fefefe;
+}
+
+.news-blog h2 {
+    font-size: 2.5em;
+    margin-bottom: 40px;
+    color: #444;
+    position: relative;
+}
+
+.news-blog h2::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 4px;
+    background: #FF6B6B;
+    margin: 15px auto 0;
+    border-radius: 2px;
+}
+
+.news-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.news-item {
     background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    text-align: left;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInSlideUp 0.8s ease-out forwards;
+}
+
+.news-item:nth-child(1) { animation-delay: 0.2s; }
+.news-item:nth-child(2) { animation-delay: 0.4s; }
+.news-item:nth-child(3) { animation-delay: 0.6s; }
+
+
+.news-item:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.news-item a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.news-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-bottom: 1px solid #eee;
+    transition: transform 0.3s ease;
+}
+
+.news-item:hover img {
+    transform: scale(1.03);
+}
+
+.news-item p.date {
+    font-size: 0.9em;
+    color: #888;
+    padding: 15px 20px 0;
+}
+
+.news-item h4 {
+    font-size: 1.3em;
+    color: #444;
+    padding: 0 20px 20px;
+    margin: 0;
+    line-height: 1.4;
+}
+
+/* About Section (Retained for consistency) */
+.about {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 70px 5%;
+    background-color: #fff;
+    color: #333;
+    max-width: 1200px;
+    margin: 40px auto;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.about-content {
+    flex: 1;
+    padding-right: 40px;
+    text-align: left;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInSlideUp 1s ease-out forwards;
+    animation-delay: 0.3s;
+}
+
+.about-content h2 {
+    font-size: 2.8rem;
+    margin-bottom: 20px;
+    color: #444;
+    position: relative;
+}
+
+.about-content h2::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: #FFD166;
+    margin-top: 10px;
+    border-radius: 2px;
+}
+
+.stars {
+    font-size: 2em;
+    color: #FFD166;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+    opacity: 0;
+    transform: translateY(10px);
+    animation: fadeInSlideUp 0.8s ease-out forwards;
+    animation-delay: 0.6s;
+}
+
+.about-content p {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInSlideUp 0.9s ease-out forwards;
+    animation-delay: 0.8s;
+}
+
+.about-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 50%;
+    opacity: 0;
+    transform: scale(0.9);
+    animation: scaleIn 1s ease-out forwards;
+    animation-delay: 0.5s;
+}
+
+.about-image img {
+    width: 100%;
+    max-width: 500px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    height: auto;
+    transition: transform 0.4s ease;
+}
+
+.about-image img:hover {
+    transform: scale(1.02);
+}
+
+/* Contact Section (Retained for consistency) */
+.contact {
+    padding: 70px 5%;
+    text-align: center;
+    background-color: #fefefe;
+    color: #333;
+    max-width: 1200px;
+    margin: 40px auto;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.contact h3 {
+    font-size: 2.8rem;
+    margin-bottom: 30px;
+    color: #444;
+    position: relative;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInSlideUp 1s ease-out forwards;
+    animation-delay: 0.2s;
+}
+
+.contact h3::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: #FF6B6B;
+    margin: 15px auto 0;
+    border-radius: 2px;
+}
+
+.contact p {
+    font-size: 1.25rem;
+    margin-bottom: 25px;
+    line-height: 1.7;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInSlideUp 1s ease-out forwards;
+    animation-delay: 0.4s;
+}
+
+.contact ul {
+    list-style: none;
+    padding: 0;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.contact ul li {
+    font-size: 1.15rem;
+    margin: 15px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInSlideUp 1s ease-out forwards;
+}
+
+.contact ul li:nth-child(1) { animation-delay: 0.6s; }
+.contact ul li:nth-child(2) { animation-delay: 0.8s; }
+.contact ul li:nth-child(3) { animation-delay: 1.0s; }
+
+
+.contact ul li::before {
+    content: '📞';
+    font-size: 1.2em;
+    color: #FF6B6B;
+}
+
+.contact ul li:nth-child(2)::before {
+    content: '✉️';
+}
+
+.contact ul li:nth-child(3)::before {
+    content: '📍';
+}
+
+/* --------------------------- Catalog Section --------------------------- */
+.catalog {
+    padding: 70px 5%; /* Consistent generous padding */
+    text-align: center;
+    background-color: #fefefe; /* Consistent light background */
+    max-width: 1200px; /* Consistent max-width */
+    margin: 40px auto; /* Center with vertical margin */
+    border-radius: 15px; /* Consistent rounded corners */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1); /* Consistent soft shadow */
+    overflow: hidden; /* Important for animations */
 }
 
 .catalog h1 {
-    font-size: 2.5rem;
-    margin-bottom: 20px;
+    font-size: 2.8rem; /* Consistent large heading size */
+    margin-bottom: 30px;
+    color: #444;
+    position: relative;
+    opacity: 0; /* Initial state for animation */
+    transform: translateY(20px); /* Initial state for animation */
+    animation: fadeInSlideUp 1s ease-out forwards; /* Animation for heading */
+    animation-delay: 0.2s;
+}
+
+.catalog h1::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 4px;
+    background: #FFD166; /* Accent color for heading line */
+    margin: 15px auto 0;
+    border-radius: 2px;
 }
 
 .product-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 columns for desktop */
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive grid, minimum 280px */
+    gap: 30px; /* Consistent gap */
     margin-top: 30px;
 }
 
 .product {
-    background-color: #f9f9f9;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    padding: 25px; /* Slightly more padding for product cards */
+    border-radius: 15px; /* Consistent rounded corners */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); /* Lighter shadow */
     text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover transition */
+    opacity: 0; /* Initial state for animation */
+    transform: translateY(20px); /* Initial state for animation */
+    animation: fadeInSlideUp 0.8s ease-out forwards; /* Animation for products */
+}
+
+/* Staggered animation delays for products */
+.product:nth-child(1) { animation-delay: 0.4s; }
+.product:nth-child(2) { animation-delay: 0.5s; }
+.product:nth-child(3) { animation-delay: 0.6s; }
+.product:nth-child(4) { animation-delay: 0.7s; }
+.product:nth-child(5) { animation-delay: 0.8s; }
+.product:nth-child(6) { animation-delay: 0.9s; }
+/* Add more :nth-child rules if you have more products */
+
+
+.product:hover {
+    transform: translateY(-8px); /* Lift on hover */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15); /* Stronger shadow on hover */
 }
 
 .product img {
     width: 100%;
-    max-width: 250px; /* Ensures images don't get too large on big screens */
+    max-width: 200px; /* Max width for product images */
     height: auto;
-    border-radius: 10px;
+    border-radius: 10px; /* Rounded corners for images */
+    margin-bottom: 15px; /* Space below image */
+    transition: transform 0.3s ease; /* Zoom on hover */
+}
+
+.product:hover img {
+    transform: scale(1.05); /* Slight zoom on image hover */
 }
 
 .product h3 {
-    font-size: 1.2rem;
-    margin-top: 10px;
+    font-size: 1.4rem; /* Larger product title */
+    margin-bottom: 10px;
     font-weight: bold;
+    color: #444;
 }
 
 .rating {
-    font-size: 1rem;
+    font-size: 1.3rem; /* Larger stars */
     margin-top: 5px;
-    color: gold;
+    color: #FFD166; /* Gold color for stars */
+    margin-bottom: 15px;
 }
 
 .price {
-    font-size: 1.1rem;
+    font-size: 1.3rem; /* Larger price text */
     margin-top: 10px;
     font-weight: bold;
+    color: #FF6B6B; /* Accent color for price */
 }
 
 .btn-sale {
-    background-color: #ff6347;
+    background-color: #FF6B6B; /* Consistent accent color */
     color: white;
-    padding: 10px 20px;
-    margin-top: 15px;
+    padding: 12px 25px; /* Larger padding for button */
+    margin-top: 20px;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px; /* More rounded button */
     cursor: pointer;
-    transition: background-color 0.3s ease; /* Smooth hover effect */
+    font-size: 1.1rem; /* Larger font for button */
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 10px rgba(255, 107, 107, 0.3); /* Soft shadow for button */
 }
 
 .btn-sale:hover {
-    background-color: #e04a2f;
+    background-color: #FF4F4F; /* Darker on hover */
+    transform: translateY(-3px); /* Slight lift on hover */
+    box-shadow: 0 6px 15px rgba(255, 107, 107, 0.4);
 }
 
 .pagination {
-    margin-top: 30px;
+    margin-top: 50px; /* More space above pagination */
     text-align: center;
+    opacity: 0; /* Initial state for animation */
+    transform: translateY(20px); /* Initial state for animation */
+    animation: fadeInSlideUp 1s ease-out forwards; /* Animation for pagination */
+    animation-delay: 1s; /* Delay after products appear */
 }
 
 .pagination a {
     text-decoration: none;
-    color: #333;
-    margin: 0 5px;
+    color: #555;
+    margin: 0 8px; /* More spacing for pagination links */
     font-size: 1.2rem;
-    padding: 5px 10px; /* Add padding for easier tapping on mobile */
-    border-radius: 5px;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    padding: 10px 15px; /* Larger padding for easier tapping */
+    border-radius: 8px; /* Rounded pagination buttons */
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #ddd; /* Subtle border */
 }
 
 .pagination a:hover {
-    background-color: #ff6347;
-    color: white;
+    background-color: #FFD166; /* Accent color on hover */
+    color: #fff;
+    box-shadow: 0 4px 10px rgba(255, 209, 102, 0.3);
 }
 
-.pagination a.active { /* Style for active page, if you add it later */
-    background-color: #ff6347;
+.pagination a.active {
+    background-color: #FF6B6B; /* Active page with primary accent color */
     color: white;
     font-weight: bold;
+    border-color: #FF6B6B;
+    box-shadow: 0 4px 10px rgba(255, 107, 107, 0.3);
 }
 
-/* --- Media Queries for Responsiveness --- */
-
-/* For screens smaller than 768px (common tablet breakpoint) */
-@media (max-width: 768px) {
-    /* Header adjustments */
-    header {
-        flex-direction: column; /* Stack logo and nav vertically */
-        align-items: flex-start; /* Align items to the start */
-        padding: 15px 20px;
+/* Keyframe Animations */
+@keyframes fadeInSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
     }
-
-    nav {
-        flex-direction: column; /* Stack nav items */
-        width: 100%;
-        margin-top: 15px;
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
+}
 
-    nav .logo {
-        margin-right: 0; /* Remove auto margin */
-        margin-bottom: 15px; /* Add space below logo */
-        width: 100%; /* Take full width */
-        text-align: center; /* Center the logo image */
+@keyframes rotateIn {
+    from {
+        opacity: 0;
+        transform: rotateY(90deg) scale(0.8);
     }
-
-    nav .logo img {
-        height: 50px; /* Slightly smaller logo for mobile */
+    to {
+        opacity: 1;
+        transform: rotateY(0deg) scale(1);
     }
+}
 
-    nav ul {
-        flex-direction: column; /* Stack menu items */
-        align-items: center; /* Center align menu items */
-        margin-top: 10px;
-        width: auto; /* Allow ul to shrink-wrap content */
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    /* Adjust general padding for larger tablets */
+    header, .hero, .news-blog, .about, .contact, .catalog {
+        padding-left: 3%;
+        padding-right: 3%;
     }
 
     nav ul li {
-        margin-left: 0; /* Remove horizontal margin */
-        margin-bottom: 15px; /* Add vertical space between links */
+        margin-left: 15px;
+        margin-right: 15px;
     }
 
-    nav ul li a {
-        font-size: 1.1rem; /* Slightly smaller text for better fit */
+    .hero-text h1 {
+        font-size: 3em;
+    }
+    .hero-text p {
+        font-size: 1.3em;
     }
 
-    /* Catalog adjustments */
-    .catalog {
-        padding: 30px 15px; /* Reduced padding for smaller screens */
+    .about {
+        flex-direction: column;
+        text-align: center;
     }
 
+    .about-content {
+        padding-right: 0;
+        margin-bottom: 40px;
+        max-width: 80%;
+    }
+
+    .about-content h2 {
+        font-size: 2.2em;
+    }
+
+    .about-content h2::after {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .about-image {
+        max-width: 70%;
+    }
+
+    .contact h3 {
+        font-size: 2.2em;
+    }
+
+    .contact p {
+        font-size: 1.1em;
+    }
+
+    /* Catalog adjustments for tablets (e.g., 2 columns) */
     .catalog h1 {
-        font-size: 2rem; /* Smaller heading */
+        font-size: 2.2rem;
     }
-
     .product-grid {
-        grid-template-columns: repeat(2, 1fr); /* 2 columns for tablets */
-        gap: 15px; /* Slightly less gap */
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Adjust min product width */
+        gap: 20px;
     }
-
-    .product img {
-        max-width: 200px; /* Limit image size on tablets */
-    }
-
     .product h3 {
-        font-size: 1.1rem; /* Smaller product title */
+        font-size: 1.2rem;
     }
-
     .price {
-        font-size: 1rem; /* Smaller price text */
+        font-size: 1.1rem;
     }
-
-    .pagination {
+    .btn-sale {
+        padding: 10px 20px;
         font-size: 1rem;
-        margin-top: 20px;
+    }
+    .pagination a {
+        padding: 8px 12px;
+        font-size: 1.1rem;
     }
 }
 
-/* For screens smaller than 480px (common mobile breakpoint) */
-@media (max-width: 480px) {
-    /* General body padding adjustment for very small screens */
-    body {
-        padding: 0 10px;
+@media (max-width: 768px) {
+    /* Header adjustments */
+    header {
+        padding: 10px 20px;
     }
 
+    nav .logo {
+        margin-bottom: 8px;
+    }
+
+    nav .logo img {
+        height: 45px;
+    }
+
+    nav ul li {
+        margin: 0 10px;
+    }
+
+    nav ul li a {
+        font-size: 1em;
+    }
+
+    /* Hero Section adjustments */
+    .hero {
+        padding: 60px 5%;
+    }
+    .hero-text h1 {
+        font-size: 2.5em;
+    }
+    .hero-text p {
+        font-size: 1.2em;
+    }
+
+    /* News Section adjustments */
+    .news-blog h2 {
+        font-size: 2em;
+    }
+
+    /* About Section adjustments */
+    .about {
+        padding: 50px 20px;
+        margin: 30px auto;
+    }
+
+    .about-content {
+        max-width: 100%;
+        margin-bottom: 30px;
+    }
+
+    .about-content h2 {
+        font-size: 2em;
+    }
+
+    .about-content p {
+        font-size: 1rem;
+    }
+
+    .stars {
+        font-size: 1.6rem;
+    }
+
+    .about-image {
+        max-width: 90%;
+    }
+
+    /* Contact Section adjustments */
+    .contact {
+        padding: 50px 20px;
+        margin: 30px auto;
+    }
+
+    .contact h3 {
+        font-size: 2em;
+    }
+
+    .contact p {
+        font-size: 1.1rem;
+    }
+
+    .contact ul li {
+        font-size: 1rem;
+    }
+
+    /* Catalog adjustments for mobile (single column) */
+    .catalog {
+        padding: 40px 20px;
+        margin: 30px auto;
+    }
+    .catalog h1 {
+        font-size: 2rem;
+    }
+    .product-grid {
+        grid-template-columns: 1fr; /* Single column for mobile */
+        gap: 20px;
+    }
+    .product {
+        padding: 20px;
+    }
+    .product img {
+        max-width: 180px; /* Slightly smaller for single column */
+    }
+    .product h3 {
+        font-size: 1.1rem;
+    }
+    .price {
+        font-size: 1.1rem;
+    }
+    .btn-sale {
+        padding: 10px 20px;
+        font-size: 1rem;
+    }
+    .pagination a {
+        padding: 6px 10px;
+        font-size: 1rem;
+        margin: 0 5px;
+    }
+}
+
+@media (max-width: 480px) {
     /* Header adjustments */
     header {
         padding: 10px 15px;
     }
 
     nav .logo img {
-        height: 45px; /* Even smaller logo */
+        height: 40px;
+    }
+
+    nav ul li {
+        margin: 0 8px;
     }
 
     nav ul li a {
-        font-size: 1rem; /* Even smaller font for links */
+        font-size: 0.9em;
     }
 
-    /* Catalog adjustments */
+    /* Hero adjustments */
+    .hero {
+        padding: 40px 15px;
+    }
+    .hero-text h1 {
+        font-size: 2em;
+    }
+    .hero-text p {
+        font-size: 1em;
+    }
+
+    /* News adjustments */
+    .news-container {
+        grid-template-columns: 1fr;
+    }
+    .news-item img {
+        height: 180px;
+    }
+
+    /* About Section adjustments */
+    .about {
+        padding: 30px 15px;
+        margin: 20px auto;
+    }
+
+    .about-content h2 {
+        font-size: 1.8rem;
+    }
+
+    .about-content p {
+        font-size: 0.95rem;
+    }
+
+    .stars {
+        font-size: 1.3rem;
+    }
+
+    /* Contact Section adjustments */
+    .contact {
+        padding: 30px 15px;
+        margin: 20px auto;
+    }
+
+    .contact h3 {
+        font-size: 1.8rem;
+    }
+
+    .contact p {
+        font-size: 1rem;
+    }
+
+    .contact ul li {
+        flex-direction: column;
+        text-align: center;
+        gap: 5px;
+    }
+
+    /* Catalog adjustments for very small screens */
     .catalog {
-        padding: 20px 10px; /* Further reduced padding */
+        padding: 30px 15px;
+        margin: 20px auto;
     }
-
     .catalog h1 {
-        font-size: 1.8rem; /* Even smaller heading */
+        font-size: 1.8rem;
     }
-
     .product-grid {
-        grid-template-columns: 1fr; /* Single column for mobile phones */
-        gap: 15px; /* Consistent gap */
+        gap: 15px;
     }
-
     .product {
-        padding: 15px; /* Reduced product card padding */
+        padding: 15px;
     }
-
     .product img {
-        max-width: 150px; /* Smallest image size */
+        max-width: 150px;
     }
-
     .product h3 {
         font-size: 1rem;
     }
-
-    .rating {
-        font-size: 0.9rem;
-    }
-
     .price {
         font-size: 1rem;
     }
-
     .btn-sale {
-        padding: 8px 15px; /* Smaller button padding */
+        padding: 8px 15px;
         font-size: 0.9rem;
     }
-
     .pagination a {
-        font-size: 1rem;
-        padding: 3px 8px; /* Smaller pagination links */
+        font-size: 0.9rem;
+        padding: 4px 8px;
+        margin: 0 3px;
     }
 }

@@ -5,255 +5,655 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Inter', sans-serif; /* Using a modern font */
     line-height: 1.6;
-    background-color: #f4f4f4;
+    background-color: #f8f8f8; /* Light background for consistency */
+    color: #333;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
-/* Header */
+/* Header & Navigation */
 header {
-    background-color: #fff;
-    padding: 20px; /* Adjusted padding for better spacing on all screens */
+    background-color: #ffffff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap; /* Allows items to wrap on smaller screens */
+    position: sticky; /* Makes header stick to top */
+    top: 0;
+    z-index: 1000; /* Ensures header is above other content */
+    transition: background-color 0.3s ease; /* Smooth transition for background */
+    padding: 10px 5%; /* Adjusted padding for a more compact header */
+    display: flex; /* Make header a flex container */
+    flex-direction: column; /* Stack logo and nav vertically */
+    align-items: center; /* Center items horizontally in the column */
 }
 
 nav {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    /* Remove position: absolute and left: 20px from .logo, it will be handled by flexbox */
+    flex-direction: column; /* Stack logo and nav list within nav */
+    align-items: center; /* Center logo and nav list */
+    width: 100%; /* Take full width of header */
+    max-width: 1200px; /* Max width for content */
+    margin: 0 auto; /* Center nav horizontally */
 }
 
 nav .logo {
-    order: -1; /* Ensures logo is always first in flex order */
-    margin-right: auto; /* Pushes the logo to the left */
+    margin-bottom: 10px; /* Space between logo and nav links */
 }
 
 nav .logo img {
-    height: 60px;
+    height: 50px; /* Consistent logo size */
+    transition: transform 0.3s ease; /* Animation for logo */
+}
+
+nav .logo img:hover {
+    transform: scale(1.05);
 }
 
 nav ul {
     list-style: none;
-    display: flex;
-    width: 100%; /* Take full width on smaller screens */
-    justify-content: flex-end; /* Align links to the right by default */
-    margin-top: 0; /* Reset margin */
+    margin: 0;
+    padding: 0;
+    display: flex; /* Display links in a row */
+    justify-content: center; /* Center the navigation links */
+    width: 100%; /* Ensure ul takes full width to center links */
 }
 
 nav ul li {
-    margin-left: 40px; /* Reduced margin for desktop, will adjust for mobile */
-    margin-top: 0; /* Reset margin */
+    margin: 0 15px; /* Spacing between menu items (adjust as needed) */
 }
 
 nav ul li a {
     text-decoration: none;
-    color: #333;
+    color: #555;
     font-weight: bold;
-    font-size: 1.2rem; /* Slightly reduced for better mobile fit, will adjust with media queries */
-    white-space: nowrap; /* Prevent links from breaking lines */
+    font-size: 1.1em;
+    padding: 5px 0;
+    position: relative;
+    transition: color 0.3s ease;
 }
 
-/* Hero Section */
+nav ul li a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    display: block;
+    margin-top: 5px;
+    right: 0;
+    background: #FF6B6B; /* Accent color */
+    transition: width 0.3s ease, right 0.3s ease;
+}
+
+nav ul li a:hover::after {
+    width: 100%;
+    left: 0;
+    background: #FF6B6B;
+}
+
+nav ul li a:hover {
+    color: #FF6B6B;
+}
+
+/* Hero Section (Retained from previous update for consistency) */
 .hero {
     display: flex;
-    flex-direction: row; /* Default for desktop */
-    justify-content: space-between;
-    padding: 50px 20px;
-    background-color: #fff;
-    color: rgb(0, 0, 0);
+    flex-direction: column;
     align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 80px 5%;
+    background: linear-gradient(135deg, #FFD166, #FF6B6B); /* Gradient background */
+    color: #fff;
+    overflow: hidden; /* For animations */
 }
 
 .hero-text {
-    max-width: 50%; /* Default for desktop */
-    text-align: left;
+    max-width: 800px;
+    margin-bottom: 40px;
+    opacity: 0; /* Initial state for animation */
+    transform: translateY(20px); /* Initial state for animation */
+    animation: fadeInSlideUp 1s ease-out forwards; /* Animation */
+    animation-delay: 0.5s;
 }
 
 .hero-text h1 {
-    font-size: 3rem;
-    margin-bottom: 20px;
+    font-size: 3.5em;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
 }
 
 .hero-text p {
-    font-size: 1.5rem;
+    font-size: 1.5em;
+    font-weight: 300;
+}
+
+.hero-image {
+    width: 100%;
+    max-width: 700px;
+    perspective: 1000px; /* For 3D transform */
 }
 
 .hero-image img {
-    width: 400px;
-    height: 400px;
-    object-fit: cover;
+    width: 100%;
+    height: auto;
     border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    transform: rotateY(0deg); /* Initial state for animation */
+    animation: rotateIn 1s ease-out forwards; /* Animation */
+    animation-delay: 1s;
 }
 
-/* News Blog Section */
+/* News & Blog Section (Retained from previous update for consistency) */
 .news-blog {
-    padding: 50px 20px;
+    padding: 60px 5%;
     text-align: center;
-    background-color: #fff;
+    background-color: #fefefe;
 }
 
 .news-blog h2 {
-    font-size: 2rem;
-    margin-bottom: 20px;
+    font-size: 2.5em;
+    margin-bottom: 40px;
+    color: #444;
+    position: relative;
 }
 
-.news-blog h3 {
-    font-size: 1.5rem;
-    margin-bottom: 30px;
+.news-blog h2::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 4px;
+    background: #FF6B6B;
+    margin: 15px auto 0;
+    border-radius: 2px;
 }
 
 .news-container {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap; /* Allows news items to wrap */
-    gap: 20px; /* Adds space between news items */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .news-item {
-    background-color: #f9f9f9;
-    padding: 20px;
-    width: 30%; /* Default for desktop */
+    background-color: #fff;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
     text-align: left;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    opacity: 0; /* Initial state for animation */
+    transform: translateY(20px); /* Initial state for animation */
+    animation: fadeInSlideUp 0.8s ease-out forwards; /* Animation */
+}
+
+.news-item:nth-child(1) { animation-delay: 0.2s; }
+.news-item:nth-child(2) { animation-delay: 0.4s; }
+.news-item:nth-child(3) { animation-delay: 0.6s; }
+
+
+.news-item:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.news-item a {
+    text-decoration: none;
+    color: inherit;
+    display: block; /* Make the entire div clickable */
 }
 
 .news-item img {
     width: 100%;
     height: 200px;
     object-fit: cover;
-    border-radius: 10px;
+    border-bottom: 1px solid #eee;
+    transition: transform 0.3s ease;
 }
 
-.news-item .date {
-    font-size: 0.875rem;
-    color: #777;
-    margin-top: 10px;
+.news-item:hover img {
+    transform: scale(1.03);
+}
+
+.news-item p.date {
+    font-size: 0.9em;
+    color: #888;
+    padding: 15px 20px 0;
 }
 
 .news-item h4 {
-    font-size: 1.2rem;
-    margin-top: 15px;
+    font-size: 1.3em;
+    color: #444;
+    padding: 0 20px 20px;
+    margin: 0;
+    line-height: 1.4;
 }
 
-/* --- Media Queries for Responsiveness --- */
+/* --------------------------- About Section --------------------------- */
+.about {
+    display: flex;
+    flex-direction: row; /* Default for desktop: side-by-side */
+    justify-content: space-between;
+    align-items: center; /* Vertically align content */
+    padding: 70px 5%; /* Generous padding */
+    background-color: #fff;
+    color: #333;
+    max-width: 1200px; /* Match max-width of other sections */
+    margin: 40px auto; /* Center the section with vertical margin */
+    border-radius: 15px; /* Rounded corners for the section */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    overflow: hidden; /* Important for animations */
+}
 
-/* For screens smaller than 768px (common tablet breakpoint) */
-@media (max-width: 768px) {
-    /* Header adjustments */
-    header {
-        flex-direction: column; /* Stack logo and nav vertically */
-        align-items: flex-start; /* Align items to the start */
-        padding: 15px 20px;
+.about-content {
+    flex: 1; /* Take available space */
+    padding-right: 40px; /* More padding for text on desktop */
+    text-align: left;
+    opacity: 0; /* Initial state for animation */
+    transform: translateY(20px); /* Initial state for animation */
+    animation: fadeInSlideUp 1s ease-out forwards; /* Animation */
+    animation-delay: 0.3s;
+}
+
+.about-content h2 {
+    font-size: 2.8rem; /* Larger heading */
+    margin-bottom: 20px;
+    color: #444;
+    position: relative;
+}
+
+.about-content h2::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: #FFD166; /* Accent line */
+    margin-top: 10px;
+    border-radius: 2px;
+}
+
+.stars {
+    font-size: 2em; /* Larger stars */
+    color: #FFD166; /* Gold color */
+    margin-bottom: 20px;
+    letter-spacing: 2px; /* Spacing between stars */
+    opacity: 0;
+    transform: translateY(10px);
+    animation: fadeInSlideUp 0.8s ease-out forwards;
+    animation-delay: 0.6s;
+}
+
+.about-content p {
+    font-size: 1.15rem; /* Slightly larger text */
+    line-height: 1.8; /* Better readability */
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInSlideUp 0.9s ease-out forwards;
+    animation-delay: 0.8s;
+}
+
+.about-image {
+    flex: 1; /* Take available space */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 50%; /* Control image width on desktop */
+    opacity: 0; /* Initial state for animation */
+    transform: scale(0.9); /* Initial state for animation */
+    animation: scaleIn 1s ease-out forwards; /* New animation for image */
+    animation-delay: 0.5s;
+}
+
+.about-image img {
+    width: 100%;
+    max-width: 500px; /* Max width for image */
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); /* Soft shadow for image */
+    height: auto;
+    transition: transform 0.4s ease;
+}
+
+.about-image img:hover {
+    transform: scale(1.02); /* Slight zoom on hover */
+}
+
+
+/* --------------------------- Contact Section --------------------------- */
+.contact {
+    padding: 70px 5%; /* Generous padding */
+    text-align: center;
+    background-color: #fefefe; /* Lighter background */
+    color: #333;
+    max-width: 1200px; /* Match max-width of other sections */
+    margin: 40px auto; /* Center the section with vertical margin */
+    border-radius: 15px; /* Rounded corners for the section */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    overflow: hidden; /* Important for animations */
+}
+
+.contact h3 {
+    font-size: 2.8rem; /* Larger heading */
+    margin-bottom: 30px;
+    color: #444;
+    position: relative;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInSlideUp 1s ease-out forwards;
+    animation-delay: 0.2s;
+}
+
+.contact h3::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: #FF6B6B; /* Accent line */
+    margin: 15px auto 0;
+    border-radius: 2px;
+}
+
+.contact p {
+    font-size: 1.25rem; /* Larger text */
+    margin-bottom: 25px;
+    line-height: 1.7;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInSlideUp 1s ease-out forwards;
+    animation-delay: 0.4s;
+}
+
+.contact ul {
+    list-style: none;
+    padding: 0;
+    max-width: 600px; /* Constrain list width */
+    margin: 0 auto;
+}
+
+.contact ul li {
+    font-size: 1.15rem; /* Slightly larger list items */
+    margin: 15px 0;
+    display: flex; /* Use flex for icon alignment */
+    align-items: center;
+    justify-content: center;
+    gap: 10px; /* Space between icon and text */
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInSlideUp 1s ease-out forwards;
+}
+
+.contact ul li:nth-child(1) { animation-delay: 0.6s; }
+.contact ul li:nth-child(2) { animation-delay: 0.8s; }
+.contact ul li:nth-child(3) { animation-delay: 1.0s; }
+
+
+/* Add simple icons/emojis for contact items (example, you can use Font Awesome for better icons) */
+.contact ul li::before {
+    content: '📞'; /* Phone icon */
+    font-size: 1.2em;
+    color: #FF6B6B;
+}
+
+.contact ul li:nth-child(2)::before {
+    content: '✉️'; /* Email icon */
+}
+
+.contact ul li:nth-child(3)::before {
+    content: '📍'; /* Location icon */
+}
+
+
+/* Keyframe Animations */
+@keyframes fadeInSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
     }
-
-    nav {
-        flex-direction: column; /* Stack nav items */
-        width: 100%;
-        margin-top: 15px;
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
+}
 
-    nav .logo {
-        margin-right: 0; /* Remove auto margin */
-        margin-bottom: 15px; /* Add space below logo */
-        width: 100%; /* Take full width */
-        text-align: center; /* Center the logo image */
+@keyframes rotateIn {
+    from {
+        opacity: 0;
+        transform: rotateY(90deg) scale(0.8);
     }
+    to {
+        opacity: 1;
+        transform: rotateY(0deg) scale(1);
+    }
+}
 
-    nav ul {
-        flex-direction: column; /* Stack menu items */
-        align-items: center; /* Center align menu items */
-        margin-top: 10px;
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    /* Adjust general padding for larger tablets */
+    header, .hero, .news-blog, .about, .contact {
+        padding-left: 3%;
+        padding-right: 3%;
     }
 
     nav ul li {
-        margin-left: 0; /* Remove horizontal margin */
-        margin-bottom: 15px; /* Add vertical space between links */
+        margin-left: 15px; /* Adjust margin for smaller screens */
+        margin-right: 15px; /* Adjust margin for smaller screens */
+    }
+
+    .hero-text h1 {
+        font-size: 3em;
+    }
+    .hero-text p {
+        font-size: 1.3em;
+    }
+
+    .about {
+        flex-direction: column; /* Stack for tablets */
+        text-align: center;
+    }
+
+    .about-content {
+        padding-right: 0;
+        margin-bottom: 40px;
+        max-width: 80%; /* Constrain text width */
+    }
+
+    .about-content h2 {
+        font-size: 2.2em;
+    }
+
+    .about-content h2::after {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .about-image {
+        max-width: 70%; /* Image wider on tablets */
+    }
+
+    .contact h3 {
+        font-size: 2.2em;
+    }
+
+    .contact p {
+        font-size: 1.1em;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Header adjustments */
+    header {
+        padding: 10px 20px; /* Slightly reduced padding for mobile */
+    }
+
+    nav {
+        /* No change needed here, already flex-direction: column and centered */
+    }
+
+    nav .logo {
+        margin-bottom: 8px; /* Slightly less space on mobile */
+    }
+
+    nav .logo img {
+        height: 45px; /* Slightly smaller logo for mobile */
+    }
+
+    nav ul {
+        /* No change needed here, already flex and centered */
+    }
+
+    nav ul li {
+        margin: 0 10px; /* Reduced horizontal margin for links on smaller screens */
     }
 
     nav ul li a {
-        font-size: 1.1rem; /* Slightly smaller text for better fit */
+        font-size: 1em; /* Slightly smaller text for better fit */
     }
 
     /* Hero Section adjustments */
     .hero {
-        flex-direction: column; /* Stack text and image vertically */
-        text-align: center;
-        padding: 30px 20px;
+        padding: 60px 5%;
+    }
+    .hero-text h1 {
+        font-size: 2.5em;
+    }
+    .hero-text p {
+        font-size: 1.2em;
     }
 
-    .hero-text {
-        max-width: 100%; /* Take full width */
+    /* News Section adjustments */
+    .news-blog h2 {
+        font-size: 2em;
+    }
+
+    /* About Section adjustments */
+    .about {
+        padding: 50px 20px; /* Adjust padding */
+        margin: 30px auto;
+    }
+
+    .about-content {
+        max-width: 100%; /* Take full width on mobile */
         margin-bottom: 30px; /* Space between text and image */
     }
 
-    .hero-text h1 {
-        font-size: 2.2rem; /* Smaller font size for mobile */
+    .about-content h2 {
+        font-size: 2em; /* Smaller font size for mobile */
     }
 
-    .hero-text p {
-        font-size: 1.2rem; /* Smaller font size for mobile */
+    .about-content p {
+        font-size: 1rem; /* Smaller font size for mobile */
     }
 
-    .hero-image img {
-        width: 100%; /* Make image full width */
-        max-width: 300px; /* Limit max width for very small screens */
-        height: auto; /* Maintain aspect ratio */
+    .stars {
+        font-size: 1.6rem; /* Adjust star size */
     }
 
-    /* News Blog Section adjustments */
-    .news-container {
-        flex-direction: column; /* Stack news items vertically */
-        align-items: center; /* Center news items */
+    .about-image {
+        max-width: 90%; /* Make image wider on mobile */
     }
 
-    .news-item {
-        width: 90%; /* Make news items take more width */
-        max-width: 400px; /* Max width for news items */
+    /* Contact Section adjustments */
+    .contact {
+        padding: 50px 20px;
+        margin: 30px auto;
+    }
+
+    .contact h3 {
+        font-size: 2em;
+    }
+
+    .contact p {
+        font-size: 1.1rem;
+    }
+
+    .contact ul li {
+        font-size: 1rem;
     }
 }
 
-/* For screens smaller than 480px (common mobile breakpoint) */
 @media (max-width: 480px) {
-    /* General body padding adjustment for very small screens */
-    body {
-        padding: 0 10px;
-    }
-
     /* Header adjustments */
     header {
         padding: 10px 15px;
     }
 
     nav .logo img {
-        height: 50px; /* Slightly smaller logo */
+        height: 40px; /* Even smaller logo */
+    }
+
+    nav ul li {
+        margin: 0 8px; /* Even tighter spacing for very small screens */
     }
 
     nav ul li a {
-        font-size: 1rem; /* Even smaller font for links */
+        font-size: 0.9em; /* Even smaller font for links */
     }
 
-    /* Hero Section adjustments */
+    /* Hero adjustments */
     .hero {
-        padding: 20px 15px;
+        padding: 40px 15px;
+    }
+    .hero-text h1 {
+        font-size: 2em;
+    }
+    .hero-text p {
+        font-size: 1em;
     }
 
-    .hero-text h1 {
+    /* News adjustments */
+    .news-container {
+        grid-template-columns: 1fr; /* Single column for news on very small screens */
+    }
+    .news-item img {
+        height: 180px;
+    }
+
+    /* About Section adjustments */
+    .about {
+        padding: 30px 15px;
+        margin: 20px auto;
+    }
+
+    .about-content h2 {
         font-size: 1.8rem;
     }
 
-    .hero-text p {
+    .about-content p {
+        font-size: 0.95rem; /* Slightly smaller text for very small screens */
+    }
+
+    .stars {
+        font-size: 1.3rem;
+    }
+
+    /* Contact Section adjustments */
+    .contact {
+        padding: 30px 15px;
+        margin: 20px auto;
+    }
+
+    .contact h3 {
+        font-size: 1.8rem;
+    }
+
+    .contact p {
         font-size: 1rem;
     }
 
-    /* News Blog Section adjustments */
-    .news-blog h2 {
-        font-size: 1.8rem;
+    .contact ul li {
+        flex-direction: column; /* Stack icon and text for narrow screens */
+        text-align: center;
+        gap: 5px;
     }
 }
